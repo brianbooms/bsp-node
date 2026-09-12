@@ -13,7 +13,7 @@ spec alone. A failed interop run is a useful result — it finds spec bugs.
 
 **Option A — Cloudflare Workers (free tier works):**
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.dev/button)](https://deploy.workers.dev/?url=https://github.com/<OWNER>/bsp-node)
+[![Deploy to Cloudflare Workers](https://deploy.workers.dev/button)](https://deploy.workers.dev/?url=https://github.com/brianbooms/bsp-node)
 
 Click the button, authorize with your Cloudflare account, and you have a
 live BSP node. No build step, no secrets, no bindings: the node generates
@@ -22,13 +22,13 @@ its own Ed25519 identity on first boot and publishes it at
 
 **Option B — Replit:**
 
-[Open in Replit](https://replit.com/github/<OWNER>/bsp-node) — the Repl
+[Open in Replit](https://replit.com/github/brianbooms/bsp-node) — the Repl
 boots `node local.js` and your node is live in the browser tab.
 
 Either way, what you get is YOUR node: your infrastructure, your keys, your
 ledger. Then run the interop session (below) to prove you're in.
 
-> Replace `<OWNER>` with the repo owner's GitHub username after the repo is
+> Replace `brianbooms` with the repo owner's GitHub username after the repo is
 > created. The button target must be the public repo URL.
 
 ## What it implements
