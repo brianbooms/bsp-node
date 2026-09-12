@@ -1,0 +1,5 @@
+run = "node local.js"
+entrypoint = "local.js"
+
+[deployment]
+run = ["sh", "-c", "node local.js"]

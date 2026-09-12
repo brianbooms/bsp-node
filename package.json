@@ -1,0 +1,1 @@
+{"description":"BSP Draft 0.1 reference node — one-click deployable, zero dependencies","license":"MIT","name":"bsp-node","scripts":{"start":"node local.js","test":"node test/selftest.mjs"},"type":"module","version":"0.1.0"}

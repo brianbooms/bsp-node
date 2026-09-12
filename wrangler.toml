@@ -1,0 +1,11 @@
+name = "bsp-node"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# One-click deploy needs no bindings, no secrets, no build step.
+# The node generates its own Ed25519 identity at first boot and serves it
+# at /.well-known/jwks.json.
+#
+# Optional (dev/test only): [vars] BSP_ALLOW_HTTP_KID = "1" permits
+# non-HTTPS kid URLs, e.g. for localhost holder keys during interop testing.
+# Never enable in production.
