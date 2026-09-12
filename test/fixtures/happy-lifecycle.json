@@ -1,0 +1,284 @@
+{
+  "vector": "happy-lifecycle",
+  "spec": "bsp/0.1",
+  "description": "Full lifecycle earn>discover>balance>quote>authorize>redeem>settle>reverse as signed objects. Verify each proof.jws against the JCS-canonicalized object WITHOUT its proof member, using the key from the JWKS whose URI matches the JWS kid.",
+  "jwks": {
+    "merchant_jwks_uri": "https://merchant.example/.well-known/jwks.json",
+    "holder_jwks_uri": "https://customer.example/.well-known/jwks.json",
+    "keys": [
+      {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "dLoSVWfiUCH0GIOnEm6RiIv18Ls0QV9e8dvc3aBHJfE",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "use": "sig",
+        "alg": "EdDSA"
+      },
+      {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "anbLK3opFHpIiMnYNbYsd44298s4OUQAPQnvy3Mwxgk",
+        "kid": "https://customer.example/.well-known/jwks.json",
+        "use": "sig",
+        "alg": "EdDSA"
+      }
+    ],
+    "note": "TEST KEYS ONLY. Generated 2026-09-12 for the frozen L4 package. Not production keys."
+  },
+  "basket": {
+    "items": [
+      {
+        "sku": "dl-0042",
+        "name": "Deep Focus Vol. 1",
+        "unit_price": {
+          "value": "29.00",
+          "currency": "USD"
+        },
+        "quantity": 1
+      }
+    ],
+    "totals": {
+      "subtotal": {
+        "value": "30.00",
+        "currency": "USD"
+      },
+      "tax": {
+        "value": "0.00",
+        "currency": "USD"
+      },
+      "shipping": {
+        "value": "0.00",
+        "currency": "USD"
+      },
+      "total": {
+        "value": "30.00",
+        "currency": "USD"
+      }
+    },
+    "merchant": "https://merchant.example",
+    "window": {
+      "from": "2026-09-12T07:20:00Z",
+      "to": "2026-09-12T07:35:00Z"
+    }
+  },
+  "basket_fingerprint": "sha256:ef77093cf5bb583983676b518920f1f2bb6b03958fcfe94e58fc227198c787c6",
+  "steps": [
+    {
+      "step": "reward",
+      "object": {
+        "id": "urn:bsp:reward:l4happy01",
+        "type": "bsp.Reward",
+        "spec": "bsp/0.1",
+        "amount": {
+          "value": "8.40",
+          "currency": "USD"
+        },
+        "state": "issued",
+        "issuer": "https://merchant.example",
+        "holder": "https://customer.example/acct/42",
+        "redeemable": true,
+        "constraints": {
+          "merchants": [
+            "https://merchant.example"
+          ],
+          "min_basket": "25.00",
+          "expires_at": "2026-12-31T23:59:59Z"
+        },
+        "attribution": {
+          "referrer": "https://agent.example",
+          "campaign": "l4-test"
+        },
+        "issued_at": "2026-09-12T07:21:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhbW91bnQiOnsiY3VycmVuY3kiOiJVU0QiLCJ2YWx1ZSI6IjguNDAifSwiYXR0cmlidXRpb24iOnsiY2FtcGFpZ24iOiJsNC10ZXN0IiwicmVmZXJyZXIiOiJodHRwczovL2FnZW50LmV4YW1wbGUifSwiY29uc3RyYWludHMiOnsiZXhwaXJlc19hdCI6IjIwMjYtMTItMzFUMjM6NTk6NTlaIiwibWVyY2hhbnRzIjpbImh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZSJdLCJtaW5fYmFza2V0IjoiMjUuMDAifSwiaG9sZGVyIjoiaHR0cHM6Ly9jdXN0b21lci5leGFtcGxlL2FjY3QvNDIiLCJpZCI6InVybjpic3A6cmV3YXJkOmw0aGFwcHkwMSIsImlzc3VlZF9hdCI6IjIwMjYtMDktMTJUMDc6MjE6MDBaIiwiaXNzdWVyIjoiaHR0cHM6Ly9tZXJjaGFudC5leGFtcGxlIiwicmVkZWVtYWJsZSI6dHJ1ZSwic3BlYyI6ImJzcC8wLjEiLCJzdGF0ZSI6Imlzc3VlZCIsInR5cGUiOiJic3AuUmV3YXJkIn0.cRVRj4i9UJ7JCyQwvafES03uqwZFKUjq2Fjr_1bLq37l12ondJCDsCtch9Votmkso4n2Nxmz2_QC3_PyrnTbDQ"
+        }
+      },
+      "signing_input_jcs": "{\"amount\":{\"currency\":\"USD\",\"value\":\"8.40\"},\"attribution\":{\"campaign\":\"l4-test\",\"referrer\":\"https://agent.example\"},\"constraints\":{\"expires_at\":\"2026-12-31T23:59:59Z\",\"merchants\":[\"https://merchant.example\"],\"min_basket\":\"25.00\"},\"holder\":\"https://customer.example/acct/42\",\"id\":\"urn:bsp:reward:l4happy01\",\"issued_at\":\"2026-09-12T07:21:00Z\",\"issuer\":\"https://merchant.example\",\"redeemable\":true,\"spec\":\"bsp/0.1\",\"state\":\"issued\",\"type\":\"bsp.Reward\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    },
+    {
+      "step": "consent",
+      "object": {
+        "id": "urn:bsp:consent:l4happy01",
+        "type": "bsp.Consent",
+        "spec": "bsp/0.1",
+        "holder": "https://customer.example/acct/42",
+        "reward": "urn:bsp:reward:l4happy01",
+        "merchants": [
+          "https://merchant.example"
+        ],
+        "scope": [
+          "redeem"
+        ],
+        "single_use": false,
+        "issued_at": "2026-09-12T07:22:00Z",
+        "expires_at": "2026-09-12T08:22:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vY3VzdG9tZXIuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJleHBpcmVzX2F0IjoiMjAyNi0wOS0xMlQwODoyMjowMFoiLCJob2xkZXIiOiJodHRwczovL2N1c3RvbWVyLmV4YW1wbGUvYWNjdC80MiIsImlkIjoidXJuOmJzcDpjb25zZW50Omw0aGFwcHkwMSIsImlzc3VlZF9hdCI6IjIwMjYtMDktMTJUMDc6MjI6MDBaIiwibWVyY2hhbnRzIjpbImh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZSJdLCJyZXdhcmQiOiJ1cm46YnNwOnJld2FyZDpsNGhhcHB5MDEiLCJzY29wZSI6WyJyZWRlZW0iXSwic2luZ2xlX3VzZSI6ZmFsc2UsInNwZWMiOiJic3AvMC4xIiwidHlwZSI6ImJzcC5Db25zZW50In0.C-dCmIgkO2q-PTUsdO0xqaXbTh1kfMdfYBa2OIVIwyQLEZDb0NRIReG1c9YyGOPXEce8OJ5N6MHpx91rR3JYCg"
+        }
+      },
+      "signing_input_jcs": "{\"expires_at\":\"2026-09-12T08:22:00Z\",\"holder\":\"https://customer.example/acct/42\",\"id\":\"urn:bsp:consent:l4happy01\",\"issued_at\":\"2026-09-12T07:22:00Z\",\"merchants\":[\"https://merchant.example\"],\"reward\":\"urn:bsp:reward:l4happy01\",\"scope\":[\"redeem\"],\"single_use\":false,\"spec\":\"bsp/0.1\",\"type\":\"bsp.Consent\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://customer.example/.well-known/jwks.json",
+        "signer": "https://customer.example/acct/42"
+      }
+    },
+    {
+      "step": "quote",
+      "object": {
+        "id": "urn:bsp:quote:l4happy01",
+        "type": "bsp.Quote",
+        "spec": "bsp/0.1",
+        "reward": "urn:bsp:reward:l4happy01",
+        "merchant": "https://merchant.example",
+        "basket_fingerprint": "sha256:ef77093cf5bb583983676b518920f1f2bb6b03958fcfe94e58fc227198c787c6",
+        "applicable_amount": {
+          "value": "8.40",
+          "currency": "USD"
+        },
+        "amount_due_after": {
+          "value": "21.60",
+          "currency": "USD"
+        },
+        "expires_at": "2026-09-12T07:26:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhbW91bnRfZHVlX2FmdGVyIjp7ImN1cnJlbmN5IjoiVVNEIiwidmFsdWUiOiIyMS42MCJ9LCJhcHBsaWNhYmxlX2Ftb3VudCI6eyJjdXJyZW5jeSI6IlVTRCIsInZhbHVlIjoiOC40MCJ9LCJiYXNrZXRfZmluZ2VycHJpbnQiOiJzaGEyNTY6ZWY3NzA5M2NmNWJiNTgzOTgzNjc2YjUxODkyMGYxZjJiYjZiMDM5NThmY2ZlOTRlNThmYzIyNzE5OGM3ODdjNiIsImV4cGlyZXNfYXQiOiIyMDI2LTA5LTEyVDA3OjI2OjAwWiIsImlkIjoidXJuOmJzcDpxdW90ZTpsNGhhcHB5MDEiLCJtZXJjaGFudCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZSIsInJld2FyZCI6InVybjpic3A6cmV3YXJkOmw0aGFwcHkwMSIsInNwZWMiOiJic3AvMC4xIiwidHlwZSI6ImJzcC5RdW90ZSJ9.e5tYC9YjHWzwU1BItsgQ5pDeQBpkpYMn1WEXkVHDsO5ThYgdicfMXf5xDZCgLlVUfIpIwM4rG_PjyeXfKDfCBQ"
+        }
+      },
+      "signing_input_jcs": "{\"amount_due_after\":{\"currency\":\"USD\",\"value\":\"21.60\"},\"applicable_amount\":{\"currency\":\"USD\",\"value\":\"8.40\"},\"basket_fingerprint\":\"sha256:ef77093cf5bb583983676b518920f1f2bb6b03958fcfe94e58fc227198c787c6\",\"expires_at\":\"2026-09-12T07:26:00Z\",\"id\":\"urn:bsp:quote:l4happy01\",\"merchant\":\"https://merchant.example\",\"reward\":\"urn:bsp:reward:l4happy01\",\"spec\":\"bsp/0.1\",\"type\":\"bsp.Quote\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    },
+    {
+      "step": "authorization",
+      "object": {
+        "id": "urn:bsp:auth:l4happy01",
+        "type": "bsp.Authorization",
+        "spec": "bsp/0.1",
+        "quote": "urn:bsp:quote:l4happy01",
+        "holder": "https://customer.example/acct/42",
+        "consent": "urn:bsp:consent:l4happy01",
+        "authorized_at": "2026-09-12T07:23:00Z",
+        "expires_at": "2026-09-12T07:26:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhdXRob3JpemVkX2F0IjoiMjAyNi0wOS0xMlQwNzoyMzowMFoiLCJjb25zZW50IjoidXJuOmJzcDpjb25zZW50Omw0aGFwcHkwMSIsImV4cGlyZXNfYXQiOiIyMDI2LTA5LTEyVDA3OjI2OjAwWiIsImhvbGRlciI6Imh0dHBzOi8vY3VzdG9tZXIuZXhhbXBsZS9hY2N0LzQyIiwiaWQiOiJ1cm46YnNwOmF1dGg6bDRoYXBweTAxIiwicXVvdGUiOiJ1cm46YnNwOnF1b3RlOmw0aGFwcHkwMSIsInNwZWMiOiJic3AvMC4xIiwidHlwZSI6ImJzcC5BdXRob3JpemF0aW9uIn0.RkQW3Ib1L-XBT7zKvnd46Q335TSBWEqO0knSUM6qoldlGEkSRkFA4K6xUMXeiMnAPRFU5ZjMiVNuTeBEJhExAg"
+        }
+      },
+      "signing_input_jcs": "{\"authorized_at\":\"2026-09-12T07:23:00Z\",\"consent\":\"urn:bsp:consent:l4happy01\",\"expires_at\":\"2026-09-12T07:26:00Z\",\"holder\":\"https://customer.example/acct/42\",\"id\":\"urn:bsp:auth:l4happy01\",\"quote\":\"urn:bsp:quote:l4happy01\",\"spec\":\"bsp/0.1\",\"type\":\"bsp.Authorization\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    },
+    {
+      "step": "redemption",
+      "object": {
+        "id": "urn:bsp:redemption:l4happy01",
+        "type": "bsp.Redemption",
+        "spec": "bsp/0.1",
+        "authorization": "urn:bsp:auth:l4happy01",
+        "quote": "urn:bsp:quote:l4happy01",
+        "order_ref": "order-l4-001",
+        "captured_amount": {
+          "value": "8.40",
+          "currency": "USD"
+        },
+        "redeemed_at": "2026-09-12T07:24:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhdXRob3JpemF0aW9uIjoidXJuOmJzcDphdXRoOmw0aGFwcHkwMSIsImNhcHR1cmVkX2Ftb3VudCI6eyJjdXJyZW5jeSI6IlVTRCIsInZhbHVlIjoiOC40MCJ9LCJpZCI6InVybjpic3A6cmVkZW1wdGlvbjpsNGhhcHB5MDEiLCJvcmRlcl9yZWYiOiJvcmRlci1sNC0wMDEiLCJxdW90ZSI6InVybjpic3A6cXVvdGU6bDRoYXBweTAxIiwicmVkZWVtZWRfYXQiOiIyMDI2LTA5LTEyVDA3OjI0OjAwWiIsInNwZWMiOiJic3AvMC4xIiwidHlwZSI6ImJzcC5SZWRlbXB0aW9uIn0.Ocu-Bbhj7UJNmvHv9kiKDhqq8rfKzew0Y59sXQLR74thN5higayk3tJVGfYDqZghMY_zwQJSvzgWA9oVY20XDA"
+        }
+      },
+      "signing_input_jcs": "{\"authorization\":\"urn:bsp:auth:l4happy01\",\"captured_amount\":{\"currency\":\"USD\",\"value\":\"8.40\"},\"id\":\"urn:bsp:redemption:l4happy01\",\"order_ref\":\"order-l4-001\",\"quote\":\"urn:bsp:quote:l4happy01\",\"redeemed_at\":\"2026-09-12T07:24:00Z\",\"spec\":\"bsp/0.1\",\"type\":\"bsp.Redemption\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    },
+    {
+      "step": "settlement",
+      "object": {
+        "id": "urn:bsp:settlement:l4happy01",
+        "type": "bsp.Settlement",
+        "spec": "bsp/0.1",
+        "redemption": "urn:bsp:redemption:l4happy01",
+        "allocation": {
+          "type": "bsp.CommissionAllocation",
+          "spec": "bsp/0.1",
+          "gross": {
+            "value": "10.00",
+            "currency": "USD"
+          },
+          "allocations": [
+            {
+              "party": "holder_or_creator",
+              "share": "0.75"
+            },
+            {
+              "party": "network",
+              "share": "0.25"
+            }
+          ]
+        },
+        "recorded_at": "2026-09-12T07:25:00Z",
+        "note": "Records obligations only. Moves no money.",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhbGxvY2F0aW9uIjp7ImFsbG9jYXRpb25zIjpbeyJwYXJ0eSI6ImhvbGRlcl9vcl9jcmVhdG9yIiwic2hhcmUiOiIwLjc1In0seyJwYXJ0eSI6Im5ldHdvcmsiLCJzaGFyZSI6IjAuMjUifV0sImdyb3NzIjp7ImN1cnJlbmN5IjoiVVNEIiwidmFsdWUiOiIxMC4wMCJ9LCJzcGVjIjoiYnNwLzAuMSIsInR5cGUiOiJic3AuQ29tbWlzc2lvbkFsbG9jYXRpb24ifSwiaWQiOiJ1cm46YnNwOnNldHRsZW1lbnQ6bDRoYXBweTAxIiwibm90ZSI6IlJlY29yZHMgb2JsaWdhdGlvbnMgb25seS4gTW92ZXMgbm8gbW9uZXkuIiwicmVjb3JkZWRfYXQiOiIyMDI2LTA5LTEyVDA3OjI1OjAwWiIsInJlZGVtcHRpb24iOiJ1cm46YnNwOnJlZGVtcHRpb246bDRoYXBweTAxIiwic3BlYyI6ImJzcC8wLjEiLCJ0eXBlIjoiYnNwLlNldHRsZW1lbnQifQ.pU9JrSwO99E7-NkN7sK9I3M4igsvfhuLsa0Wmllax6NTN1lVg3Ov8iGSK0fEi4FHnDlhcEE8NXpwWh62R7TFAg"
+        }
+      },
+      "signing_input_jcs": "{\"allocation\":{\"allocations\":[{\"party\":\"holder_or_creator\",\"share\":\"0.75\"},{\"party\":\"network\",\"share\":\"0.25\"}],\"gross\":{\"currency\":\"USD\",\"value\":\"10.00\"},\"spec\":\"bsp/0.1\",\"type\":\"bsp.CommissionAllocation\"},\"id\":\"urn:bsp:settlement:l4happy01\",\"note\":\"Records obligations only. Moves no money.\",\"recorded_at\":\"2026-09-12T07:25:00Z\",\"redemption\":\"urn:bsp:redemption:l4happy01\",\"spec\":\"bsp/0.1\",\"type\":\"bsp.Settlement\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    },
+    {
+      "step": "reversal",
+      "object": {
+        "id": "urn:bsp:reversal:l4happy01",
+        "type": "bsp.Reversal",
+        "spec": "bsp/0.1",
+        "redemption": "urn:bsp:redemption:l4happy01",
+        "reason": "refund",
+        "amount": {
+          "value": "8.40",
+          "currency": "USD"
+        },
+        "reversed_at": "2026-09-12T09:10:00Z",
+        "proof": {
+          "type": "JWS",
+          "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6Imh0dHBzOi8vbWVyY2hhbnQuZXhhbXBsZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.eyJhbW91bnQiOnsiY3VycmVuY3kiOiJVU0QiLCJ2YWx1ZSI6IjguNDAifSwiaWQiOiJ1cm46YnNwOnJldmVyc2FsOmw0aGFwcHkwMSIsInJlYXNvbiI6InJlZnVuZCIsInJlZGVtcHRpb24iOiJ1cm46YnNwOnJlZGVtcHRpb246bDRoYXBweTAxIiwicmV2ZXJzZWRfYXQiOiIyMDI2LTA5LTEyVDA5OjEwOjAwWiIsInNwZWMiOiJic3AvMC4xIiwidHlwZSI6ImJzcC5SZXZlcnNhbCJ9.3_ecfpj8zYm_Mx6sQlPD83_kVBJ6goOysEcSPMENTlbDB3dNSCDGZD4E3cO7XKOyG_BnNRMCHbyO-zd4Wb-KDA"
+        }
+      },
+      "signing_input_jcs": "{\"amount\":{\"currency\":\"USD\",\"value\":\"8.40\"},\"id\":\"urn:bsp:reversal:l4happy01\",\"reason\":\"refund\",\"redemption\":\"urn:bsp:redemption:l4happy01\",\"reversed_at\":\"2026-09-12T09:10:00Z\",\"spec\":\"bsp/0.1\",\"type\":\"bsp.Reversal\"}",
+      "expected": {
+        "signature_valid": true,
+        "alg": "EdDSA",
+        "kid": "https://merchant.example/.well-known/jwks.json",
+        "signer": "https://merchant.example"
+      }
+    }
+  ]
+}
